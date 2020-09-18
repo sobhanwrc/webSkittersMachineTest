@@ -1,0 +1,64 @@
+<html>
+    <title>User Management</title>
+    <head></head>
+    <body>
+        <div class="wrapper fadeInDown">
+            {{#if message}}
+                <div class="alert alert-success">
+                    {{message}}
+                </div>
+            {{/if}}
+
+            {{#if errorMessage}}
+                <div class="alert alert-danger">
+                    {{errorMessage}}
+                </div>
+            {{/if}}
+            <div class="row">
+                <label>Search By:</label>
+                <div class="form-group">
+                    <form method="POST" action="/search">
+                        <input type="text" placeholder="Search by first name, last name, email or status" name="searchBy" id="searchBy" value="" required/>
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>User Email</th>
+                    <th>User Mobile Number</th>
+                    <th>Address</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Country</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {{#each users}}
+                        <tr>
+                            <td>{{this.firstName}} {{this.lastName}}</td>
+                            <td>{{this.email}}</td>
+                            <td>{{this.phoneNumber}}</td>
+                            <td>{{this.address}}</td>
+                            <td>{{this.state}}</td>
+                            <td>{{this.city}}</td>
+                            <td>{{this.country.name}}</td>
+                            <td>{{this.status}}</td>
+                            <td>
+                                <a class="btn btn-primary" href="/edit/{{this._id}}">Edit</a>
+
+                                <a href='/delete/{{this._id}}' class="btn btn-danger" >Delete</a>
+
+                                <a href='/changeStatus/{{this._id}}' class="btn btn-danger" >Change Status</a>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

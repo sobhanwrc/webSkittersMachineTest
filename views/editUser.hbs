@@ -1,0 +1,66 @@
+<html>
+    <title>Edit User Info</title>
+<head>
+</head>
+<body>
+	<form method="POST" name="customerData" action="/edit/submit/{{user._id}}">
+		<table width="40%" height="100" border='1' align="center">
+			<caption>
+				<font size="4" color="blue"><b>Edit User Info</b></font>
+			</caption>
+		</table>
+		<table width="40%" height="100" border='1' align="center">
+			<tr>
+				<td>First Name</td>
+				<td><input type="text" name="firstName" id="firstName" value="{{user.firstName}}" required /> </td>
+			</tr>
+			<tr>
+				<td>Last Name</td>
+				<td><input type="text" name="lastName" id="lastName" value="{{user.lastName}}" required /></td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td><input type="email" name="email" id="email" value="{{user.email}}" required /></td>
+			</tr>
+			<tr>
+				<td>Address</td>
+				<td><textarea rows="" cols="" name="address" id="address"required>{{user.address}}</textarea></td>
+			</tr>
+			<tr>
+				<td>State</td>
+				<td><input type="text" name="state" id="state" value="{{user.state}}" required/></td>
+			</tr>
+			<tr>
+				<td>City</td>
+				<td><input type="text" name="city" id="city" value="{{user.city}}" required/></td>
+			</tr>
+			<tr>
+				<td>Country</td>
+				<td>
+                    <select name="country" id="country" required>
+                        <option value="">Select country</option>
+                        {{#each countryLists}}
+                        <option value="{{this._id}}" {{#if_eq this.name ../user.country.name}}selected="selected"{{/if_eq}}>{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+			</tr>
+			<tr>
+				<td>Phone Number</td>
+				<td><input type="text" name="phoneNumber" id="phoneNumber" value="{{user.phoneNumber}}" required/></td>
+			</tr>
+			<tr>
+				<td>DOB:</td>
+				<td><input type="text" name="dob" id="dob" value="{{dateFormat user.dob "YYYY-MM-DD"}}" required/></td>
+			</tr>
+			<tr>
+				<td  colspan="2">
+                    <INPUT TYPE="submit" value="Update">
+                    <INPUT TYPE="reset" value="Cancel">
+                </td>
+            
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
